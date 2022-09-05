@@ -26,12 +26,15 @@
 
 #
 
-Steps:
-7. Create vpc, subnet and k8s cluster
-     You will ony need to create a vpc abd subnet if you don't already have a default VPC and at least 1 subnet in it
-     e.g. gcloud container clusters create foobar-cluster --region us-central1  --project foobar-project
-     Make a note of the name of the cluster and the region it is in. You will need that shortly.
-     e.g. foobar-cluster
+##  Steps:
+#
+
+### 7. Create vpc, subnet and k8s cluster
+         You will ony need to create a vpc abd subnet if you don't already have a default VPC and at least 1 subnet in it
+         e.g. gcloud container clusters create foobar-cluster --region us-central1  --project foobar-project
+         Make a note of the name of the cluster and the region it is in. You will need that shortly.
+         e.g. 
+          foobar-cluster
           us-central1
 
 8. kubectl config current-context

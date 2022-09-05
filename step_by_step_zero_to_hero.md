@@ -94,31 +94,31 @@
            chmod 755 argocd
            sudo mv argocd /usr/local/bin/
 
-16. Change the argocd-server service type to LoadBalancer: (This will allow us to get to UI from Mac using port forwarding)
-      kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
-    Confirm by:
-      kubectl describe svc argocd-server -n argocd 
+### 16. Change the argocd-server service type to LoadBalancer: (This will allow us to get to UI from Mac using port forwarding)
+          kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+          Confirm by:
+          kubectl describe svc argocd-server -n argocd 
 
-17. Set up port forwarding to argocd Server UI:
-      kubectl port-forward svc/argocd-server -n argocd 8080:443 &
-    Confirm by:
-      Use chrome and go to localhost:8080
+### 17. Set up port forwarding to argocd Server UI:
+          kubectl port-forward svc/argocd-server -n argocd 8080:443 &
+          Confirm by:
+          Use chrome and go to localhost:8080
 
-18. Get the initian admin password for argocd UI:
-      kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
-    Note down the string you get back. That is your password.
+### 18. Get the initian admin password for argocd UI:
+          kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+          Note down the string you get back. That is your password.
 
 
-19. Get the IP of the argocd_server service:
-      kubectl get svc -n argocd | grep argocd-server | grep -v metrics
-    Note down the external IP address that you see  (NOT the one that starts with 10.)
+### 19. Get the IP of the argocd_server service:
+          kubectl get svc -n argocd | grep argocd-server | grep -v metrics
+          Note down the external IP address that you see  (NOT the one that starts with 10.)
 
-20. Login to argocd server via argocd CLI:
-      argocd login IP_address_that_you_noted_down_in_the_previous_step
-      Username will be admin
-      Password will be the one you noted down earlier
-    Confrim by:
-      Getting the following message: 'admin:login' logged in successfully
+### 20. Login to argocd server via argocd CLI:
+          argocd login IP_address_that_you_noted_down_in_the_previous_step
+            Username will be admin
+            Password will be the one you noted down earlier
+          Confrim by:
+            Getting the following message: 'admin:login' logged in successfully
 
 
 21. (Optional): Change the admin password to something that easier to remember:

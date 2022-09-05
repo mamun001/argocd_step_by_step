@@ -1,7 +1,8 @@
 
 #
 #     STEP BY STEP GUIDE FOR ARGO CD SETUP and ACTIVE USE
-#
+          (Continuous Deployment for Kubernetes)
+
 ##    Use this step-up-step guide if you want to learn how use ARGO CD to set up Continuous Deployment for Kubernetes Infrastructure and Applications
 #
 

@@ -36,8 +36,10 @@
 
 #
 
+#
 
-## Cost
+
+## COST
 #
 ### As of September 2022, a standard Kubernetes Cluster with 2 N2 Instances will cost $0.72/Hour (72 Cents/Hour)
 #
@@ -64,14 +66,18 @@
 
 ### 10. Confirm that now you ARE connected to your kubernetes cluster:
     kubectl config current-context
-11. Create argocd namespace
-    kubectl create namespace argocd
-    Confirm by:
-    kubectl get ns
-12. Install argocd on your cluster:
-    kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-    Confirm by:
-    kubectl get svc -n argocd
+
+
+### 11. Create argocd namespace
+          kubectl create namespace argocd
+          Confirm by:
+          kubectl get ns
+
+
+### 12. Install argocd on your cluster:
+          kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+          Confirm by:
+          kubectl get svc -n argocd
 
 13. On a mac, brew updates take too long. Turn off auto-update for brew.
     export HOMEBREW_NO_AUTO_UPDATE=1

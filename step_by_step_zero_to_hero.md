@@ -11,10 +11,13 @@
 ###   Connect with me on Linkedin: https://www.linkedin.com/in/mamunrashid/
 #
 
-
+#
 
 ## Pre-requisites
 #
+
+#
+
 
 ### 1. MacOS or Ubuntu Linux
         I will add Windows equivalent later.
@@ -39,6 +42,7 @@
 ### As of September 2022, a standard Kubernetes Cluster with 2 N2 Instances will cost $0.72/Hour (72 Cents/Hour)
 #
 
+#
 
 
 ##  Steps:

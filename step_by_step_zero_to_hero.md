@@ -79,20 +79,20 @@
           Confirm by:
           kubectl get svc -n argocd
 
-13. On a mac, brew updates take too long. Turn off auto-update for brew.
-    export HOMEBREW_NO_AUTO_UPDATE=1
-    Confirm by:
-    env | grep HOMEBREW
+### 13. On a mac, brew updates take too long. Turn off auto-update for brew.
+          export HOMEBREW_NO_AUTO_UPDATE=1
+          Confirm by:
+          env | grep HOMEBREW
 
-14. (On Mac) Install argocd CLI:
-    brew install argocd 
-    Conform by:
-    argocd version
+### 14. (On Mac) Install argocd CLI:
+           brew install argocd 
+           Confirm by:
+           argocd version
 
-15. On Ubuntu Linux:
-      wget https://github.com/argoproj/argo-cd/releases/download/v2.2.5/argocd-linux-amd64 -O argocd
-      chmod 755 argocd
-      sudo mv argocd /usr/local/bin/
+### 15. On Ubuntu Linux:
+           wget https://github.com/argoproj/argo-cd/releases/download/v2.2.5/argocd-linux-amd64 -O argocd
+           chmod 755 argocd
+           sudo mv argocd /usr/local/bin/
 
 16. Change the argocd-server service type to LoadBalancer: (This will allow us to get to UI from Mac using port forwarding)
       kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'

@@ -10,7 +10,7 @@
 #
 
 ### 1. MacOS or Ubuntu Linux
-###      I will add Windows equivalent later.
+####        I will add Windows equivalent later.
 ### 2. Access to a GCP project
      Take a note of the project name:
        e.g. foobar-project

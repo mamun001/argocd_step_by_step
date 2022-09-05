@@ -149,8 +149,9 @@
             --dest-server: which cluster this will deploy to
             --dest-namespace: which namesspace this will deploy to.
 
-24. Confirm that your argocd app has been created and see its settings:
-      argocd app get foobar-nginx
+### 24. Confirm that your argocd app has been created and see its settings:
+          argocd app get foobar-nginx
+
     You should get:
       Name:               foobar-nginx
       Project:            default

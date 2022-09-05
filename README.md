@@ -1,5 +1,13 @@
 #
-#          argocd_step_by_step
+#
+#     STEP BY STEP GUIDE FOR ARGO CD SETUP & FUNCTIONING PIPELINE
+          (Continuous Deployment for Kubernetes)
+#
+
+#
+
+##    Use this step-up-step guide if you want to learn how use ARGO CD to set up Continuous Deployment for Kubernetes Infrastructure and Applications
+##
 #
 
 
@@ -11,6 +19,17 @@
 ###  Please connect with me on Linkedin
 ### https://www.linkedin.com/in/mamunrashid/
 #
+
+#
+
+
+## HOW TO USE THIS REPO
+###
+### Simply follow along the commands explained in  step_by_step_zero_to_hero.md file
+#
+
+
+
 
 
 

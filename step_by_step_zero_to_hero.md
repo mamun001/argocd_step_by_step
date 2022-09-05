@@ -121,32 +121,33 @@
             Getting the following message: 'admin:login' logged in successfully
 
 
-21. (Optional): Change the admin password to something that easier to remember:
-      argocd account update-password
-    Note down the new password if you do choose to change the admin password.
+### 21. (Optional): Change the admin password to something that easier to remember:
+           argocd account update-password
+           Note down the new password if you do choose to change the admin password.
 
 
-22. Find a repo that has Kubernetes Yaml files that you can deploy:
-      You have a few choices here:
-      You can use my public one (has a simple nginx deployment)
-        https://github.com/mamun001/argocd_playground
-      Or you can use the one that argocd official documenation has:
-        https://github.com/argoproj/argocd-example-apps.git
-      Or you can write your own in your own git repo.
+### 22. Find a repo that has Kubernetes Yaml files that you can deploy:
+          You have a few choices here:
+            You can use my public one (has a simple nginx deployment)
+              https://github.com/mamun001/argocd_playground
+          Or you can use the one that argocd official documenation has:
+              https://github.com/argoproj/argocd-example-apps.git
+          Or you can write your own in your own git repo.
 
-     In this example we will use mine: 
+     #### In this example we will use my repo above (https://github.com/mamun001/argocd_playground)
 
-23. Add an app into argocd configuration using my simple repo. 
-      argocd app create foobar-nginx --repo https://github.com/mamun001/argocd_playground.git --path nginx_deployment --dest-server https://kubernetes.default.svc --dest-namespace default 
-    Confirm when you see:
-      application 'foobar-nginx' created
-    Explanations:
-      app create: create an applictaion that argocd will monitor and pull in a regular interval. Whenever it sees a new commit in the main branch, it will automatically pull down the changes and deploy (provided sync policy us set to automate). This is the WHOLE IDAE of argocd.
-      foobar-nginx: This is just name of the app we chose. It can be almost anything (no underscore allowed, though)
-      --repo: Git repo where the application code for all Kubernetes objects are kept.
-      --path: Within that repo, you can choose a particular folder to point to (to pull from). In this case, my yaml files are kept in nginx_deployment folder.
-      --dest-server: which cluster this will deploy to
-      --dest-namespace: which namesspace this will deploy to.
+
+### 23. Add an app into argocd configuration using my simple repo. 
+          argocd app create foobar-nginx --repo https://github.com/mamun001/argocd_playground.git --path nginx_deployment --dest-server https://kubernetes.default.svc --dest-namespace default 
+          Confirm when you see:
+            application 'foobar-nginx' created
+          Explanations:
+            app create: create an applictaion that argocd will monitor and pull in a regular interval. Whenever it sees a new commit in the main branch, it will automatically pull down the changes and deploy (provided sync policy us set to automate). This is the WHOLE IDAE of argocd.
+            foobar-nginx: This is just name of the app we chose. It can be almost anything (no underscore allowed, though)
+            --repo: Git repo where the application code for all Kubernetes objects are kept.
+            --path: Within that repo, you can choose a particular folder to point to (to pull from). In this case, my yaml files are kept in nginx_deployment folder.
+            --dest-server: which cluster this will deploy to
+            --dest-namespace: which namesspace this will deploy to.
 
 24. Confirm that your argocd app has been created and see its settings:
       argocd app get foobar-nginx

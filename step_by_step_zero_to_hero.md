@@ -37,11 +37,13 @@
           foobar-cluster
           us-central1
 
-8. kubectl config current-context
-   You will see that you are NOT connected to your newest cluster you just created
-9. Make the kuberneetes cluster your current context:
-   gcloud container clusters get-credentials name_of_kubernetes_cluster  --region region_where_kubernetes_cluster_is_in --project foobar-project
-10. Confirm that now you ARE connected to your kubernetes cluster:
+### 8. kubectl config current-context
+         You will see that you are NOT connected to your newest cluster you just created
+
+### 9. Make the kuberneetes cluster your current context:
+         gcloud container clusters get-credentials name_of_kubernetes_cluster  --region region_where_kubernetes_cluster_is_in --project foobar-project
+
+### 10. Confirm that now you ARE connected to your kubernetes cluster:
     kubectl config current-context
 11. Create argocd namespace
     kubectl create namespace argocd

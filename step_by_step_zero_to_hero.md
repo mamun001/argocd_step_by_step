@@ -19,9 +19,12 @@
         e.g. https://console.cloud.google.com/apis/api/container.googleapis.com/overview
 
 ### 4. Your GCP account has permission to admin k8s clusters
-### 5. gcloud (GCP cli installed)
-### 6. kubectl installed
 
+### 5. gcloud (GCP cli installed) on your local Mac or Ubuntu Machine
+
+### 6. kubectl installed on your local Mac or Ubuntu Machine
+
+#
 
 Steps:
 7. Create vpc, subnet and k8s cluster

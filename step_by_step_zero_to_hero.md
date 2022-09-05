@@ -169,31 +169,33 @@
       apps   Deployment  default    nginx  OutOfSync  Missing       
 
 
-25. You see that app is out of sync. Sync the app.
-      argocd app sync foobar-nginx
-    Confirm by:
-      Seeing:  Message:            successfully synced (all tasks run) 
+### 25. You see that app is out of sync. Sync the app.
+          argocd app sync foobar-nginx
+          Confirm by:
+            Seeing:  Message:            successfully synced (all tasks run) 
 
-26. Confirm that deployment is indeed created in your cluster in the default namespace.
-      kubectl get deploy
+### 26. Confirm that deployment is indeed created in your cluster in the default namespace.
+          kubectl get deploy
 
       You should see:
       NAME    READY   UP-TO-DATE   AVAILABLE   AGE
       nginx   1/1     1            1           55s
 
-27. Delete the argocd app:
-      argocd app delete foobar-nginx
-    Confirm by:
-      argocd app list
-      You should no longer see the app that you deleted
 
-28. Now create the same app again. This time we will tell argocd to automatically sync from repo whenever there is a commit. This is main idead of argocd.
-      argocd app create foobar-nginx --repo https://github.com/mamun001/argocd_playground.git --path nginx_deployment --dest-server https://kubernetes.default.svc --dest-namespace default --sync-policy automated
-    Confirm by:
-      argocd app list
-      You should see:
-        NAME          CLUSTER                         NAMESPACE  PROJECT  STATUS  HEALTH   SYNCPOLICY  CONDITIONS  REPO                                               PATH              TARGET
-        foobar-nginx  https://kubernetes.default.svc  default    default  Synced  Healthy  Auto        <none>      https://github.com/mamun001/argocd_playground.git  nginx_deployment  
+### 27. Delete the argocd app:
+          argocd app delete foobar-nginx
+        Confirm by:
+          argocd app list
+          You should no longer see the app that you deleted
+
+### 28. Now create the same app again. This time we will tell argocd to automatically sync from repo whenever there is a commit. This is main idead of argocd.
+          argocd app create foobar-nginx --repo https://github.com/mamun001/argocd_playground.git --path nginx_deployment --dest-server https://kubernetes.default.svc --dest-namespace default --sync-policy automated
+         Confirm by:
+           argocd app list
+      
+         You should see:
+           NAME          CLUSTER                         NAMESPACE  PROJECT  STATUS  HEALTH   SYNCPOLICY  CONDITIONS  REPO                                               PATH              TARGET
+           foobar-nginx  https://kubernetes.default.svc  default    default  Synced  Healthy  Auto        <none>      https://github.com/mamun001/argocd_playground.git  nginx_deployment  
 
 
 29. Clean up: Delete the app:

@@ -199,10 +199,10 @@
            foobar-nginx  https://kubernetes.default.svc  default    default  Synced  Healthy  Auto        <none>      https://github.com/mamun001/argocd_playground.git  nginx_deployment  
 
 
-29. Clean up: Delete the app:
-      argocd app delete foobar-nginx
+### 29. Clean up: Delete the app:
+          argocd app delete foobar-nginx
 
-30. Destroy the Kubernetes cluster so that you stop incurring cost of running a small cluster.
-      gcloud container clusters delete kubernetes_cluster_name --zone zone_where_the_cluster_is --project project_name_where_the_cluster_is
+### 30. Destroy the Kubernetes cluster so that you stop incurring cost of running a small cluster.
+          gcloud container clusters delete kubernetes_cluster_name --zone zone_where_the_cluster_is --project project_name_where_the_cluster_is
 
 

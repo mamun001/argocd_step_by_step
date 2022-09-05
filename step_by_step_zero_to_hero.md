@@ -14,10 +14,11 @@
 ### 2. Access to a GCP project
      Take a note of the project name:
        e.g. foobar-project
-3. kubernetes API is enabled on that GCP project
-4. You are GCP account has permission to admin k8s clusters
-5. gcloud (GCP cli installed)
-6. kubectl installed
+### 3. kubernetes API is enabled on that GCP project
+
+### 4. You are GCP account has permission to admin k8s clusters
+### 5. gcloud (GCP cli installed)
+### 6. kubectl installed
 
 
 Steps:

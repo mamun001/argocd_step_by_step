@@ -4,9 +4,10 @@
 #
 
 ## Pre-requisites
-###1. MacOS
-     I will add Linux and Windows equivalent later.
-2. Access to a GCP project
+## ---------------------------------------------------------------
+### 1. MacOS or Ubuntu Linux
+###      I will add Windows equivalent later.
+### 2. Access to a GCP project
      Take a note of the project name:
        e.g. foobar-project
 3. kubernetes API is enabled on that GCP project
@@ -43,10 +44,15 @@ Steps:
     Confirm by:
     env | grep HOMEBREW
 
-14. Install argocd CLI:
+14. (On Mac) Install argocd CLI:
     brew install argocd 
     Conform by:
     argocd version
+
+15. On Ubuntu Linux:
+      wget https://github.com/argoproj/argo-cd/releases/download/v2.2.5/argocd-linux-amd64 -O argocd
+      chmod 755 argocd
+      sudo mv argocd /usr/local/bin/
 
 15. Change the argocd-server service type to LoadBalancer: (This will allow us to get to UI from Mac using port forwarding)
       kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'

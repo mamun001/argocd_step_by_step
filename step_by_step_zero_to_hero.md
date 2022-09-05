@@ -1,10 +1,14 @@
 
-
-#     STEP BY STEP ZERO TO HERO GUIDE FOR ARGO CD
+#
+#     STEP BY STEP GUIDE FOR ARGO CD SETUP and ACTIVE USE
+#
+##    Use this step-up-step guide if you want to learn how use ARGO CD to set up Continuous Deployment for Kubernetes Infrastructure and Applications
 #
 
+
 ## Pre-requisites
-## ---------------------------------------------------------------
+#
+
 ### 1. MacOS or Ubuntu Linux
 ###      I will add Windows equivalent later.
 ### 2. Access to a GCP project

@@ -41,7 +41,7 @@
 
 ## COST
 #
-### As of September 2022, a standard Kubernetes Cluster with 2 N2 Instances will cost $0.72/Hour (72 Cents/Hour)
+### As of September 2022, a standard Kubernetes Cluster with 2 Small Instances will cost $0.06/Hour (6 Cents/Hour)
 #
 
 #
@@ -50,70 +50,72 @@
 ##  Steps:
 #
 
-### 7. Create vpc, subnet and k8s cluster
-         You will ony need to create a vpc abd subnet if you don't already have a default VPC and at least 1 subnet in it
+### 7. Create vpc, subnet:
+         You will ony need to create a vpc and subnet if you don't already have a default VPC and at least 1 subnet in it
+
+### 8. Create a Kubernetes Cluster
          e.g. gcloud container clusters create foobar-cluster --region us-central1  --project foobar-project
          Make a note of the name of the cluster and the region it is in. You will need that shortly.
          e.g. 
           foobar-cluster
           us-central1
 
-### 8. kubectl config current-context
+### 9. kubectl config current-context
          You will see that you are NOT connected to your newest cluster you just created
 
-### 9. Make the kuberneetes cluster your current context:
+### 10. Make the kuberneetes cluster your current context:
          gcloud container clusters get-credentials name_of_kubernetes_cluster  --region region_where_kubernetes_cluster_is_in --project foobar-project
 
-### 10. Confirm that now you ARE connected to your kubernetes cluster:
+### 11. Confirm that now you ARE connected to your kubernetes cluster:
     kubectl config current-context
 
 
-### 11. Create argocd namespace
+### 12. Create argocd namespace
           kubectl create namespace argocd
           Confirm by:
           kubectl get ns
 
 
-### 12. Install argocd on your cluster:
+### 13. Install argocd on your cluster:
           kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
           Confirm by:
           kubectl get svc -n argocd
 
-### 13. On a mac, brew updates take too long. Turn off auto-update for brew.
+### 14. On a mac, brew updates take too long. Turn off auto-update for brew.
           export HOMEBREW_NO_AUTO_UPDATE=1
           Confirm by:
           env | grep HOMEBREW
 
-### 14. (On Mac) Install argocd CLI:
+### 15. (On Mac) Install argocd CLI:
            brew install argocd 
            Confirm by:
            argocd version
 
-### 15. On Ubuntu Linux:
+### 16. On Ubuntu Linux:
            wget https://github.com/argoproj/argo-cd/releases/download/v2.2.5/argocd-linux-amd64 -O argocd
            chmod 755 argocd
            sudo mv argocd /usr/local/bin/
 
-### 16. Change the argocd-server service type to LoadBalancer: (This will allow us to get to UI from Mac using port forwarding)
+### 17. Change the argocd-server service type to LoadBalancer: (This will allow us to get to UI from Mac using port forwarding)
           kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
           Confirm by:
           kubectl describe svc argocd-server -n argocd 
 
-### 17. Set up port forwarding to argocd Server UI:
+### 18. Set up port forwarding to argocd Server UI:
           kubectl port-forward svc/argocd-server -n argocd 8080:443 &
           Confirm by:
           Use chrome and go to localhost:8080
 
-### 18. Get the initian admin password for argocd UI:
+### 19. Get the initian admin password for argocd UI:
           kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
           Note down the string you get back. That is your password.
 
 
-### 19. Get the IP of the argocd_server service:
+### 20. Get the IP of the argocd_server service:
           kubectl get svc -n argocd | grep argocd-server | grep -v metrics
           Note down the external IP address that you see  (NOT the one that starts with 10.)
 
-### 20. Login to argocd server via argocd CLI:
+### 21. Login to argocd server via argocd CLI:
           argocd login IP_address_that_you_noted_down_in_the_previous_step
             Username will be admin
             Password will be the one you noted down earlier
@@ -121,12 +123,12 @@
             Getting the following message: 'admin:login' logged in successfully
 
 
-### 21. (Optional): Change the admin password to something that easier to remember:
+### 22. (Optional): Change the admin password to something that easier to remember:
            argocd account update-password
            Note down the new password if you do choose to change the admin password.
 
 
-### 22. Find a repo that has Kubernetes Yaml files that you can deploy:
+### 23. Find a repo that has Kubernetes Yaml files that you can deploy:
           You have a few choices here:
             You can use my public one (has a simple nginx deployment)
               https://github.com/mamun001/argocd_playground
@@ -137,7 +139,7 @@
      #### In this example we will use my repo above (https://github.com/mamun001/argocd_playground)
 
 
-### 23. Add an app into argocd configuration using my simple repo. 
+### 24. Add an app into argocd configuration using my simple repo. 
           argocd app create foobar-nginx --repo https://github.com/mamun001/argocd_playground.git --path nginx_deployment --dest-server https://kubernetes.default.svc --dest-namespace default 
           Confirm when you see:
             application 'foobar-nginx' created
@@ -149,7 +151,7 @@
             --dest-server: which cluster this will deploy to
             --dest-namespace: which namesspace this will deploy to.
 
-### 24. Confirm that your argocd app has been created and see its settings:
+### 25. Confirm that your argocd app has been created and see its settings:
           argocd app get foobar-nginx
 
     You should get:
@@ -170,12 +172,12 @@
       apps   Deployment  default    nginx  OutOfSync  Missing       
 
 
-### 25. You see that app is out of sync. Sync the app.
+### 26. You see that app is out of sync. Sync the app.
           argocd app sync foobar-nginx
           Confirm by:
             Seeing:  Message:            successfully synced (all tasks run) 
 
-### 26. Confirm that deployment is indeed created in your cluster in the default namespace.
+### 27. Confirm that deployment is indeed created in your cluster in the default namespace.
           kubectl get deploy
 
       You should see:
@@ -183,13 +185,13 @@
       nginx   1/1     1            1           55s
 
 
-### 27. Delete the argocd app:
+### 28. Delete the argocd app:
           argocd app delete foobar-nginx
         Confirm by:
           argocd app list
           You should no longer see the app that you deleted
 
-### 28. Now create the same app again. This time we will tell argocd to automatically sync from repo whenever there is a commit. This is main idead of argocd.
+### 29. Now create the same app again. This time we will tell argocd to automatically sync from repo whenever there is a commit. This is main idead of argocd.
           argocd app create foobar-nginx --repo https://github.com/mamun001/argocd_playground.git --path nginx_deployment --dest-server https://kubernetes.default.svc --dest-namespace default --sync-policy automated
          Confirm by:
            argocd app list
@@ -199,10 +201,10 @@
            foobar-nginx  https://kubernetes.default.svc  default    default  Synced  Healthy  Auto        <none>      https://github.com/mamun001/argocd_playground.git  nginx_deployment  
 
 
-### 29. Clean up: Delete the app:
+### 30. Clean up: Delete the app:
           argocd app delete foobar-nginx
 
-### 30. Destroy the Kubernetes cluster so that you stop incurring cost of running a small cluster.
+### 31. Destroy the Kubernetes cluster so that you stop incurring cost of running a small cluster.
           gcloud container clusters delete kubernetes_cluster_name --zone zone_where_the_cluster_is --project project_name_where_the_cluster_is
 
 
